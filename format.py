@@ -7,7 +7,7 @@ def readFile(fileName):
     rows = []
     with open(fileName, 'r', encoding='latin1') as f:
         for line in f:
-            rows.append(line.split('\t'))
+            rows.append(line.rstrip().split('\t'))
     return rows
 
 def toCSV(fileName, rows):
@@ -41,9 +41,12 @@ fName = sys.argv[1]
 rows = readFile(fName)
 if sys.argv[2] == '-c':
     toCSV('data.csv', rows)
+    print('data.csv created successfully!')
 elif sys.argv[2] == '-j':
     toJSON('data.json', rows)
+    print('data.json created successfully!')
 elif sys.argv[2] == '-x':
     toXML('data.xml', rows)
+    print('data.xml created successfully!')
 else :
     print('invalid format')
